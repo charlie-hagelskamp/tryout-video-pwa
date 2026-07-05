@@ -18,13 +18,11 @@ const noResultsState = document.querySelector("#noResultsState");
 const savedCount = document.querySelector("#savedCount");
 const storageEstimate = document.querySelector("#storageEstimate");
 const clearDoneButton = document.querySelector("#clearDoneButton");
-const installButton = document.querySelector("#installButton");
 const toast = document.querySelector("#toast");
 
 let db;
 let pendingFile;
 let pendingObjectUrl;
-let installPrompt;
 
 init();
 
@@ -59,19 +57,6 @@ function bindEvents() {
     previewVideo.load();
   });
 
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    installPrompt = event;
-    installButton.hidden = false;
-  });
-
-  installButton.addEventListener("click", async () => {
-    if (!installPrompt) return;
-    installPrompt.prompt();
-    await installPrompt.userChoice.catch(() => {});
-    installPrompt = null;
-    installButton.hidden = true;
-  });
 }
 
 function restoreCategory() {

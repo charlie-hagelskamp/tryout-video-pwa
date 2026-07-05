@@ -1,4 +1,4 @@
-const CACHE_NAME = "tryout-video-locker-v2";
+const CACHE_NAME = "tryout-video-locker-v3";
 const ASSETS = [
   "./",
   "./index.html",
