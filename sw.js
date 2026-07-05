@@ -1,4 +1,4 @@
-const CACHE_NAME = "tryout-video-locker-v1";
+const CACHE_NAME = "tryout-video-locker-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,7 +6,9 @@ const ASSETS = [
   "./app.js",
   "./manifest.webmanifest",
   "./assets/field.svg",
-  "./icons/icon.svg"
+  "./assets/noblesville-logo.png",
+  "./icons/noblesville-logo-192.png",
+  "./icons/noblesville-logo-512.png"
 ];
 
 self.addEventListener("install", (event) => {

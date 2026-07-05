@@ -6,14 +6,15 @@ const CATEGORY_KEY = "tryout.selectedCategory";
 const categories = [...document.querySelectorAll(".segment")];
 const playerNumber = document.querySelector("#playerNumber");
 const recordInput = document.querySelector("#recordInput");
-const photoInput = document.querySelector("#photoInput");
 const reviewDialog = document.querySelector("#reviewDialog");
 const previewVideo = document.querySelector("#previewVideo");
 const filenameField = document.querySelector("#filenameField");
 const filenameInput = document.querySelector("#filenameInput");
 const saveVideoButton = document.querySelector("#saveVideoButton");
+const videoSearch = document.querySelector("#videoSearch");
 const videoList = document.querySelector("#videoList");
 const emptyState = document.querySelector("#emptyState");
+const noResultsState = document.querySelector("#noResultsState");
 const savedCount = document.querySelector("#savedCount");
 const storageEstimate = document.querySelector("#storageEstimate");
 const clearDoneButton = document.querySelector("#clearDoneButton");
@@ -46,7 +47,7 @@ function bindEvents() {
   });
 
   recordInput.addEventListener("change", () => handleFile(recordInput.files?.[0], recordInput));
-  photoInput.addEventListener("change", () => handleFile(photoInput.files?.[0], photoInput));
+  videoSearch.addEventListener("input", renderVideos);
   saveVideoButton.addEventListener("click", savePendingVideo);
   clearDoneButton.addEventListener("click", clearSharedVideos);
 
@@ -135,10 +136,23 @@ async function savePendingVideo() {
 async function renderVideos() {
   const videos = await getAllVideos();
   videos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const query = videoSearch.value.trim().toLowerCase();
+  const filtered = query ? videos.filter((video) => videoMatches(video, query)) : videos;
 
-  savedCount.textContent = `${videos.length} saved`;
+  savedCount.textContent = query ? `${filtered.length} of ${videos.length}` : `${videos.length} saved`;
   emptyState.hidden = videos.length > 0;
-  videoList.replaceChildren(...videos.map(videoRow));
+  noResultsState.hidden = !videos.length || filtered.length > 0;
+  videoList.replaceChildren(...filtered.map(videoRow));
+}
+
+function videoMatches(video, query) {
+  return [
+    video.name,
+    video.category,
+    video.playerNumber,
+    formatBytes(video.size),
+    video.shared ? "shared" : ""
+  ].some((value) => String(value).toLowerCase().includes(query));
 }
 
 function videoRow(video) {
@@ -245,7 +259,7 @@ async function clearSharedVideos() {
 function buildFilename(number, category, file) {
   const date = new Date().toISOString().slice(0, 10);
   const extension = extensionFrom(file);
-  return `Player_${number}_${category}_${date}${extension}`;
+  return `${number}_${category}_${date}${extension}`;
 }
 
 function normalizeFilename(value, file) {

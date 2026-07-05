@@ -3,22 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#17324d">
+    <meta name="theme-color" content="#111111">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Tryout Video">
+    <meta name="apple-mobile-web-app-title" content="Tryouts Video Locker">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Tryout Video</title>
+    <title>Tryouts Video Locker</title>
     <link rel="manifest" href="./manifest.webmanifest">
-    <link rel="apple-touch-icon" href="./icons/icon.svg">
-    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./icons/noblesville-logo-512.png">
+    <link rel="icon" href="./icons/noblesville-logo.png" type="image/png">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <main class="shell">
       <section class="topbar" aria-label="Tryout session">
-        <div>
+        <img class="brand-logo" src="./assets/noblesville-logo.png" alt="Noblesville Travel Baseball">
+        <div class="title-block">
           <p class="eyebrow">Baseball Tryouts</p>
-          <h1>Video Locker</h1>
+          <h1>Tryouts Video Locker</h1>
         </div>
         <button class="icon-button" id="installButton" type="button" hidden aria-label="Install app">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -51,7 +52,7 @@
           <input id="playerNumber" type="text" inputmode="numeric" autocomplete="off" placeholder="27">
         </label>
 
-        <div class="actions">
+        <div class="actions single-action">
           <label class="primary-action file-action">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.62v6.76a1 1 0 0 1-1.45.9L15 14"></path>
@@ -59,16 +60,6 @@
             </svg>
             <span>Record</span>
             <input id="recordInput" type="file" accept="video/*" capture="environment">
-          </label>
-
-          <label class="secondary-action file-action">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <path d="M21 15l-5-5L5 21"></path>
-            </svg>
-            <span>Photos</span>
-            <input id="photoInput" type="file" accept="video/*">
           </label>
         </div>
       </section>
@@ -78,11 +69,22 @@
           <h2 id="savedLabel">Saved Videos</h2>
           <button class="text-button" id="clearDoneButton" type="button">Clear shared</button>
         </div>
+        <label class="field search-field">
+          <span>Search saved videos</span>
+          <input id="videoSearch" type="search" autocomplete="off" placeholder="Player, category, or filename">
+        </label>
         <div class="empty-state" id="emptyState">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 7h16M6 7v12h12V7M9 7V5h6v2"></path>
           </svg>
           <p>No videos saved yet.</p>
+        </div>
+        <div class="empty-state" id="noResultsState" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+          <p>No matching videos.</p>
         </div>
         <ul class="video-list" id="videoList"></ul>
       </section>
