@@ -1,0 +1,19 @@
+{
+  "name": "Tryout Video Locker",
+  "short_name": "Tryout Video",
+  "description": "Capture, name, store, and share baseball tryout videos by player and category.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef2f3",
+  "theme_color": "#17324d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

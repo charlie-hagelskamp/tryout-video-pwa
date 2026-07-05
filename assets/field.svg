@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Baseball field">
+  <rect width="1200" height="900" fill="#cfded7"/>
+  <path d="M0 0h1200v390c-160 50-360 75-600 75S160 440 0 390Z" fill="#7fa889"/>
+  <path d="M600 235 905 540 600 845 295 540Z" fill="#b98758"/>
+  <path d="M600 318 816 540 600 762 384 540Z" fill="#8abf79"/>
+  <path d="M600 235 905 540M600 235 295 540M600 845 905 540M600 845 295 540" stroke="#f7f2df" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="600" cy="540" r="58" fill="#b98758"/>
+  <rect x="574" y="514" width="52" height="52" transform="rotate(45 600 540)" fill="#f7f2df"/>
+  <rect x="585" y="220" width="30" height="30" transform="rotate(45 600 235)" fill="#f7f2df"/>
+  <rect x="890" y="525" width="30" height="30" transform="rotate(45 905 540)" fill="#f7f2df"/>
+  <rect x="280" y="525" width="30" height="30" transform="rotate(45 295 540)" fill="#f7f2df"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width="7">
+    <path d="M60 150c180 68 360 102 540 102s360-34 540-102"/>
+    <path d="M40 235c188 67 375 100 560 100s372-33 560-100"/>
+    <path d="M20 325c194 60 388 90 580 90s386-30 580-90"/>
+  </g>
+</svg>
